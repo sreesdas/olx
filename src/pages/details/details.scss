@@ -1,0 +1,19 @@
+page-details {
+    .slide-container {
+        height: 200px;
+        position: relative;
+    }
+
+    .slide-text {
+        color: white;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        z-index: 99;
+    }
+
+    .item {
+        margin: 5px;
+        border-bottom: 1px solid lightgrey;
+    }
+}

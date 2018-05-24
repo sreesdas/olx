@@ -1,14 +1,66 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
-      Ionic Blank
+      ONGC OLX
     </ion-title>
+    <ion-buttons end>
+        <button ion-button icon-start>
+          <ion-icon name="options"></ion-icon>
+          Filter
+        </button>
+        <button ion-button icon-only (click)="refresh()">
+            <ion-icon name="refresh"></ion-icon>
+          </button>
+      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <ion-card *ngFor="let item of itemLeft" (click)="showDetails(item)">
+            <img-loader [src]="item.imageurl" useImg></img-loader>
+            <ion-card-content>
+              <ion-card-title>
+                Rs {{item.item_price}}
+              </ion-card-title>
+              <p>
+                {{item.item_name}}
+              </p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col col-6>
+          <ion-card *ngFor="let item of itemRight" (click)="showDetails(item)">
+            <img-loader [src]="item.imageurl" useImg></img-loader>
+            <ion-card-content>
+              <ion-card-title>
+               Rs {{item.item_price}}
+              </ion-card-title>
+              <p>
+                {{item.item_name}}
+              </p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+  <!--ion-item>
+    <button ion-button color="secondary" (click)="getImage()">Get Image</button>
+  </ion-item>
+  <ion-item>
+    <h4>Image Preview</h4>
+    <img [src]="base64Image" />
+  </ion-item>
+  <ion-item>
+    <button ion-button (click)="uploadFile()">Upload</button>
+  </ion-item-->
+
+  <ion-fab right bottom>
+    <button ion-fab color="danger" (click)="sell()">SELL</button>
+  </ion-fab>
 </ion-content>

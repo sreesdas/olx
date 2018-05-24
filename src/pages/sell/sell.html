@@ -1,0 +1,39 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Sell Item</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+          <ion-label floating>Name</ion-label>
+          <ion-input [(ngModel)]="item.name" type="text"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label floating>Category</ion-label>
+          <ion-input [(ngModel)]="item.category" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Description</ion-label>
+          <ion-input [(ngModel)]="item.description" type="text"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label floating>Price</ion-label>
+          <ion-input [(ngModel)]="item.price" type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+          <h4>Image Preview</h4>
+          <img [src]="base64Image" />
+        </ion-item>
+    </ion-list>
+    <button ion-button block color="secondary" (click)="getImage()">Take Picture</button>
+    <button ion-button block (click)="upload()">Upload</button>
+</ion-content>

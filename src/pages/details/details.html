@@ -1,0 +1,57 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>{{item.item_name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="slide-container">
+    <ion-slides>
+        <ion-slide>
+            <img-loader [src]="item_details.imgurl1" useImg></img-loader>
+        </ion-slide>
+        <ion-slide>
+            <img-loader [src]="item_details.imgurl2" useImg></img-loader>
+        </ion-slide>
+        <ion-slide>
+            <img-loader [src]="item_details.imgurl3" useImg></img-loader>
+        </ion-slide>
+      </ion-slides>
+      <div class="slide-text">
+           <ion-icon name="images"></ion-icon>
+           3 photos
+      </div>
+  </div>
+
+  <ion-card>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/logo.png">
+        </ion-avatar>
+        <h2>{{item_details.uploader}}</h2>
+        <p>User Details</p>
+      </ion-item>
+
+      <ion-item>
+        <h1>Rs {{item.item_price}}</h1>
+        <h4>{{item.item_name}}</h4>
+        <p>{{item_details.description}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-buttons>
+            <button ion-button icon-start>
+              <ion-icon name="thumbs-up"></ion-icon>
+              Make an Offer
+            </button>
+            <button ion-button icon-start color="secondary">
+              <ion-icon name="call"></ion-icon>
+              Call Owner
+            </button>
+          </ion-buttons>
+      </ion-item>
+  </ion-card>
+</ion-content>
