@@ -14,10 +14,17 @@
           <ion-label floating>Name</ion-label>
           <ion-input [(ngModel)]="item.name" type="text"></ion-input>
         </ion-item>
-      
+
         <ion-item>
-          <ion-label floating>Category</ion-label>
-          <ion-input [(ngModel)]="item.category" type="text"></ion-input>
+          <ion-label>Category</ion-label>
+          <ion-select [(ngModel)]="item.category">
+            <ion-option value="Electronics">Electronics</ion-option>
+            <ion-option value="Vehicle">Vehicle</ion-option>
+            <ion-option value="Furniture">Furniture</ion-option>
+            <ion-option value="Books">Books</ion-option>
+            <ion-option value="Fashion">Fashion</ion-option>
+            <ion-option value="Other">Other</ion-option>
+          </ion-select>
         </ion-item>
 
         <ion-item>
@@ -30,10 +37,29 @@
           <ion-input [(ngModel)]="item.price" type="number"></ion-input>
         </ion-item>
         <ion-item>
+          
           <h4>Image Preview</h4>
-          <img [src]="base64Image" />
+          <div class="image-container">
+            <img [src]="base64Image" />
+            <img [src]="base64Image1" />
+            <img [src]="base64Image2" />
+            <img [src]="base64Image3" />
+          </div>
         </ion-item>
+
     </ion-list>
-    <button ion-button block color="secondary" (click)="getImage()">Take Picture</button>
-    <button ion-button block (click)="upload()">Upload</button>
+    <div class="button-group">
+    <button *ngIf="!base64Image" ion-button round icon-left color="primary" (click)="getImage()">
+      <ion-icon name="camera"></ion-icon>  
+      Take Picture
+    </button>
+    <button *ngIf="base64Image" ion-button round icon-left color="dark" (click)="addMore()">
+        <ion-icon name="add"></ion-icon>  
+         Add More
+    </button>
+    <button ion-button round color="secondary" icon-left (click)="upload()">
+        <ion-icon name="cloud-upload"></ion-icon>  
+        Upload
+    </button>
+    </div>
 </ion-content>

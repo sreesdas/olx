@@ -1,0 +1,11 @@
+<ion-content>
+
+  <h4>Make an Offer</h4>
+  <ion-item>
+    <ion-label floating>I would like to buy this for Rs.</ion-label>
+    <ion-input [(ngModel)]="price" type="number"></ion-input>
+  </ion-item>
+  <div style="text-align:center">
+    <button ion-button round (click)="doSubmitOffer()">Submit</button>
+  </div>
+</ion-content>

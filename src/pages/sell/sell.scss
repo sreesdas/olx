@@ -2,4 +2,12 @@ page-sell {
     ion-item img {
         max-width: 50%;
     }
+
+    .image-container {
+        overflow-x: scroll;
+    }
+
+    .button-group {
+        text-align: center;
+    }
 }

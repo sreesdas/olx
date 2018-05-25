@@ -3,27 +3,31 @@
 
   <ion-navbar color="primary">
     <ion-title>{{item.item_name}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="heart"></ion-icon>
+      </button>
+      <button ion-button icon-only>
+          <ion-icon name="share"></ion-icon>
+        </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <div class="slide-container">
-    <ion-slides>
-        <ion-slide>
-            <img-loader [src]="item_details.imgurl1" useImg></img-loader>
-        </ion-slide>
-        <ion-slide>
-            <img-loader [src]="item_details.imgurl2" useImg></img-loader>
-        </ion-slide>
-        <ion-slide>
-            <img-loader [src]="item_details.imgurl3" useImg></img-loader>
+
+  <div [ngClass] = "{ 'slide-container-shrink' : !expand , 'slide-container-expand' : expand }">
+    <ion-slides >
+        <ion-slide *ngFor="let url of photoes.urls" (click)="toggleExpand()">
+            <img-loader [src]="url" useImg ></img-loader>
         </ion-slide>
       </ion-slides>
       <div class="slide-text">
-           <ion-icon name="images"></ion-icon>
-           3 photos
+          <ion-icon name="images"></ion-icon>
+          <span>{{photoes.size}}</span> Photo<span *ngIf="photoes.size > 1">s</span>
+          
       </div>
   </div>
 
@@ -33,21 +37,22 @@
           <img src="assets/imgs/logo.png">
         </ion-avatar>
         <h2>{{item_details.uploader}}</h2>
-        <p>User Details</p>
+        <p>{{item_details.uploader_details}}</p>
+        <button ion-button clear item-end (click)="viewProfile()">View</button>
       </ion-item>
 
       <ion-item>
-        <h1>Rs {{item.item_price}}</h1>
+        <h1>₹ {{item.item_price}}</h1>
         <h4>{{item.item_name}}</h4>
-        <p>{{item_details.description}}</p>
+        <p>{{item_details.description}}  <span class="timestamp">{{item_details.uploaded_on}}</span></p>
       </ion-item>
       <ion-item>
         <ion-buttons>
-            <button ion-button icon-start>
+            <button ion-button icon-start (click)="prompt()">
               <ion-icon name="thumbs-up"></ion-icon>
               Make an Offer
             </button>
-            <button ion-button icon-start color="secondary">
+            <button ion-button icon-start color="secondary" (click)="doCall()">
               <ion-icon name="call"></ion-icon>
               Call Owner
             </button>

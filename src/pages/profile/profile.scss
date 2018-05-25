@@ -1,0 +1,23 @@
+page-profile {
+    .card-header {
+        color: #427feb;
+    }
+
+    .item ion-thumbnail{
+
+        min-width: 50px;
+        min-height: 50px;
+
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    .category {
+        font-size: 14px;
+    }
+    .description {
+        font-size: 12px;
+    }
+}

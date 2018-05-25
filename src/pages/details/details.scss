@@ -1,19 +1,40 @@
 page-details {
-    .slide-container {
-        height: 200px;
+
+    .scroll-content{
+        background-color: #efe7e7 !important;
+    }
+
+    .slide-container-shrink {
+        height: 40%;
+        position: relative;
+    }
+
+    .slide-container-expand {
+        height: 100%;
         position: relative;
     }
 
     .slide-text {
         color: white;
         position: absolute;
-        bottom: 10px;
-        right: 10px;
-        z-index: 99;
+        bottom: 15px;
+        right: 15px;
+        z-index: 90;
+        font-size: 16px;
     }
 
     .item {
         margin: 5px;
         border-bottom: 1px solid lightgrey;
+
+        h2 {
+            color: #06727f
+        }
+    }
+
+    .timestamp {
+        font-size: 12px;
+        font-weight: 400;
+        float: right;
     }
 }

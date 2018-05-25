@@ -17,6 +17,8 @@ import { Camera } from '@ionic-native/camera';
 import { HttpProvider } from '../providers/http/http';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { CallNumber } from '@ionic-native/call-number';
+import { ToastProvider } from '../providers/toast/toast';
 
 @NgModule({
   declarations: [
@@ -44,8 +46,10 @@ import { NativeStorage } from '@ionic-native/native-storage';
     FileTransferObject,
     File,
     Camera,
+    CallNumber,
     NativeStorage,
-    HttpProvider
+    HttpProvider,
+    ToastProvider
   ]
 })
 export class AppModule {}

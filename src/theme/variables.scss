@@ -34,13 +34,17 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
+  primary:    #00BCD4,
+  secondary:  #FFA726,
+  accent:     #00ACC1,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222
 );
 
+$refresher-icon-color: #FFA726;
+$refresher-border-color: white;
+$popover-md-max-height: 25%;
 
 // App iOS Variables
 // --------------------------------------------------

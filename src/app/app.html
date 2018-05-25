@@ -1,1 +1,17 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+    <ion-content>
+        <div class="sidebar-header" >
+        <img class="sidebar-avatar" src="assets/imgs/logo.png" />
+        <p class="sidebar-name" >Username</p>
+        <p class="sidebar-email">Designation</p>
+        </div>
+        <ion-list>
+        <button class="sidebar-button" icon-left menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+            <ion-icon name="{{p.icon}}"></ion-icon>
+            {{p.title}}
+        </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
