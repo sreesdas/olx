@@ -1,13 +1,39 @@
-
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title>login</ion-title>
+  <ion-navbar color="login">
+    <ion-title>Login</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-<ion-content padding>
+<ion-content class="background">
+	<ion-card>
+		<ion-card-header>
+      <div class="ongc-logo">
+        <img src="assets/imgs/ongc.png" />
+      </div>
+			ONGC MarketPlace
+		</ion-card-header>
+		<ion-card-content>
+			<ion-list no-line>
+				<ion-item>
+          <ion-input type="text" placeholder="CPF" [(ngModel)]="user.cpf"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input type="password" placeholder="Mobile" [(ngModel)]="user.password"></ion-input>
+				</ion-item>
+				<button ion-button block outline color="light" (click)="doLogin()" >Log in</button>
+        <br />
+        <p *ngIf="!errorText">Forgot your login detail? <a href="tel:+8259950403">Get help signing in</a></p>
+        <p *ngIf="errorText"><span><ion-icon color="secondary" name="warning"></ion-icon></span>{{ errorText }}</p>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+	<!-- button class="bottom" ion-button clear full color="light" (click)="db()">Don't have an account? Sign up</button -->
+</ion-content>
+
+
+<!--ion-content padding>
   <ion-list>
     <ion-item>
       <ion-label floating>CPF</ion-label>
@@ -19,4 +45,4 @@
     </ion-item>
   </ion-list>
   <button ion-button block color="primary" (click)="doLogin()">Login</button>
-</ion-content>
+</ion-content -->
