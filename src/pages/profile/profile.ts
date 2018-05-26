@@ -15,6 +15,7 @@ export class ProfilePage {
 
   user = {name: '' , cpf: '', designation: '', mobile: ''};
   offers = [{item_name: '', item_price: '', item_category: '', description: '', imageurl: ''}];
+  isAdmin = false;
 
   constructor(public navCtrl: NavController, 
     private http: HttpProvider,
@@ -25,6 +26,8 @@ export class ProfilePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
     let cpf = this.navParams.get('user');
+
+    this.isAdmin = this.navParams.get('isAdmin');
 
     this.http.get('profile.php?cpf=' + cpf)
     .subscribe( res => this.user = res['results'] );

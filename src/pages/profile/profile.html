@@ -25,8 +25,8 @@
         Contact Info
       </ion-card-header>
       <ion-list>
-        <button ion-item>
-          <ion-icon name="phone-portrait" item-start (click)=doCall()></ion-icon>
+        <button ion-item (click)=doCall()>
+          <ion-icon name="phone-portrait" item-start></ion-icon>
           {{user.mobile}}
         </button>
         <button ion-item>
@@ -48,7 +48,8 @@
               <h2>{{offer.item_name}}</h2>
               <p class="category" >{{offer.item_category}}</p>
               <p class="description" >{{offer.description}}</p>
-              <button ion-button clear item-end style="font-size: 1.5rem"  (click)="openOffer(offer)" > ₹ {{offer.item_price}}</button>
+              <button *ngIf="!isAdmin" color="accent" ion-button clear item-end style="font-size: 1.5rem"  (click)="openOffer(offer)" > ₹ {{offer.item_price}}</button>
+              <button *ngIf="isAdmin" color="danger" ion-button clear item-end>DELETE</button>
             </ion-item>
           </ion-list>
       </ion-card>

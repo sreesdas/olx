@@ -38,7 +38,7 @@ export class HomePage {
 
   ionViewDidLoad(){
     
-    
+    /*
     this.platform.ready().then(() => {
       this.nativeStorage.getItem('loggedInUser')
       .then(
@@ -48,7 +48,7 @@ export class HomePage {
         }
       );
     });
-    
+    */
 
     this.httpProvider.get('getitems.php')
     .subscribe(res => {

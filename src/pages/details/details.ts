@@ -60,7 +60,7 @@ export class DetailsPage {
   }
 
   viewProfile(){
-    this.navCtrl.push('ProfilePage', {user: this.item_details.uploader_cpf} )
+    this.navCtrl.push('ProfilePage', {user: this.item_details.uploader_cpf, isAdmin:this.loggedInUser == this.item_details.uploader_cpf } )
   }
 
   toggleExpand(){

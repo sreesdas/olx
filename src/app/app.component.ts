@@ -6,24 +6,47 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ImageLoaderConfig } from 'ionic-image-loader';
 
+import { HttpProvider } from '../providers/http/http';
+import { NativeStorage } from '@ionic-native/native-storage';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage:any = HomePage;
 
+  user = {username: '', designation: ''};
+
   @ViewChild(Nav) nav: Nav;
   pages: Array<{title: string, component: any, icon: string}>;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private imageLoaderConfig: ImageLoaderConfig) {
+  constructor(platform: Platform, statusBar: StatusBar, 
+    private storage: NativeStorage,
+    private http: HttpProvider,
+    splashScreen: SplashScreen, 
+    private imageLoaderConfig: ImageLoaderConfig) {
 
     this.pages = [
-        { title: 'Profile', component: HomePage, icon: 'home' },
-        { title: 'Logout', component: HomePage, icon: 'create' },
+        { title: 'My Profile', component: 'ProfilePage', icon: 'person' },
+        { title: 'Notifications', component: 'NotificationPage', icon: 'notifications' },
+        { title: 'Logout', component: HomePage, icon: 'power' },
     ];
 
     platform.ready().then(() => {
       
+      this.storage.getItem('loggedInUser')
+      .then(
+        data => { 
+          this.http.get('profile.php?cpf=' + data.cpf )
+          .subscribe( res => {
+            this.user = res['results'];
+          })
+         } ,
+        error => {
+          console.log(error);
+        }
+      );
+
       //this.imageLoaderConfig.enableDebugMode();
       this.imageLoaderConfig.enableFallbackAsPlaceholder(true);
       this.imageLoaderConfig.setFallbackUrl('assets/loading.gif');
@@ -38,7 +61,7 @@ export class MyApp {
   }
 
   openPage(page:any) {
-    this.nav.setRoot(page.component)
+    this.nav.setRoot(page.component, {user: '128238', isAdmin: true} )
   }
 }
 
