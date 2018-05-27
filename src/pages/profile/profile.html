@@ -40,16 +40,16 @@
           <ion-card-header>
               All Offers
             </ion-card-header>
-          <ion-list>
+          <ion-list *ngIf="isLoaded">
             <ion-item *ngFor="let offer of offers">
               <ion-thumbnail item-start>
-                <img src="{{offer.imageurl}}">
+                <img-loader [src]="offer.imageurl" useImg ></img-loader>
               </ion-thumbnail>
               <h2>{{offer.item_name}}</h2>
               <p class="category" >{{offer.item_category}}</p>
               <p class="description" >{{offer.description}}</p>
-              <button *ngIf="!isAdmin" color="accent" ion-button clear item-end style="font-size: 1.5rem"  (click)="openOffer(offer)" > ₹ {{offer.item_price}}</button>
-              <button *ngIf="isAdmin" color="danger" ion-button clear item-end>DELETE</button>
+              <button *ngIf="!isAdmin" color="accent" ion-button clear item-end style="font-size: 1.5rem" (click)="openOffer(offer)" > ₹ {{offer.item_price}}</button>
+              <button *ngIf="isAdmin" color="danger" ion-button clear item-end style="font-size: 1.5rem" (click)="presentDeleteConfirm(offer)">DELETE</button>
             </ion-item>
           </ion-list>
       </ion-card>

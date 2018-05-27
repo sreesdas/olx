@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { HttpClient } from '@angular/common/http';
-import { HttpProvider } from '../../providers/http/http';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
 import { ToastProvider } from '../../providers/toast/toast';
@@ -25,8 +24,7 @@ export class SellPage {
     public navParams: NavParams,
     private camera: Camera,
     private http: HttpClient,
-    private toast: ToastProvider,
-    private httpProvider: HttpProvider ) {
+    private toast: ToastProvider ) {
   }
 
   ionViewDidLoad() {

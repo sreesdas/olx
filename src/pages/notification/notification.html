@@ -1,0 +1,26 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Notifications</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      People interested in your offer
+    </ion-card-header>
+      <h3 class="no-notification" *ngIf="isLoaded">No new notifications right now!</h3>
+      <ion-list *ngFor="let offer of offers">  
+        <ion-item>
+          <ion-avatar item-start>
+            <img-loader [src]="offer.imageurl" useImg ></img-loader>
+          </ion-avatar>
+          <h3>{{offer.buyer}} offered <span style="font-size: 1.8rem"> ₹{{offer.price}}</span> for your {{offer.item_name}}</h3>
+        </ion-item>
+      </ion-list>
+  </ion-card>
+</ion-content>

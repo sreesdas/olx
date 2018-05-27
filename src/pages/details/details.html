@@ -18,7 +18,7 @@
 
 <ion-content>
 
-  <div [ngClass] = "{ 'slide-container-shrink' : !expand , 'slide-container-expand' : expand }">
+  <!--div [ngClass] = "{ 'slide-container-shrink' : !expand , 'slide-container-expand' : expand }">
     <ion-slides >
         <ion-slide *ngFor="let url of photoes.urls" (click)="toggleExpand()">
             <img-loader [src]="url" useImg ></img-loader>
@@ -29,7 +29,19 @@
           <span>{{photoes.size}}</span> Photo<span *ngIf="photoes.size > 1">s</span>
           
       </div>
-  </div>
+  </div-->
+
+  <div [@myanimation] = 'state'>
+    <ion-slides >
+        <ion-slide *ngFor="let url of photoes.urls" (click)="animate()">
+            <img-loader [src]="url" useImg ></img-loader>
+        </ion-slide>
+      </ion-slides>
+      <div class="slide-text">
+          <ion-icon name="images"></ion-icon>
+          <span>{{photoes.size}}</span> Photo<span *ngIf="photoes.size > 1">s</span>
+      </div>
+    </div>
 
   <ion-card>
       <ion-item>

@@ -15,7 +15,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 export class MyApp {
   rootPage:any = HomePage;
 
-  user = {username: '', designation: ''};
+  user = {cpf: '', name: '', designation: ''};
 
   @ViewChild(Nav) nav: Nav;
   pages: Array<{title: string, component: any, icon: string}>;
@@ -29,7 +29,7 @@ export class MyApp {
     this.pages = [
         { title: 'My Profile', component: 'ProfilePage', icon: 'person' },
         { title: 'Notifications', component: 'NotificationPage', icon: 'notifications' },
-        { title: 'Logout', component: HomePage, icon: 'power' },
+        { title: 'Logout', component: '', icon: 'power' },
     ];
 
     platform.ready().then(() => {
@@ -40,6 +40,7 @@ export class MyApp {
           this.http.get('profile.php?cpf=' + data.cpf )
           .subscribe( res => {
             this.user = res['results'];
+            this.user.cpf = data.cpf;
           })
          } ,
         error => {
@@ -61,7 +62,7 @@ export class MyApp {
   }
 
   openPage(page:any) {
-    this.nav.setRoot(page.component, {user: '128238', isAdmin: true} )
+    this.nav.push(page.component, {user: this.user.cpf, isAdmin: true} )
   }
 }
 

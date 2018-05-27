@@ -1,20 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
-import { HttpClient } from '@angular/common/http';
 
 //import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-import { Camera, CameraOptions } from '@ionic-native/camera';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 import { HttpProvider } from '../../providers/http/http';
 import { DetailsPage } from '../details/details';
 import { ToastProvider } from '../../providers/toast/toast';
+import { Content } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+  @ViewChild(Content) content: Content;
 
   filterActive = false;
   rangeValue:any;
@@ -28,16 +29,13 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
     private platform: Platform,
-    private http: HttpClient,
     private httpProvider : HttpProvider,
-    private camera: Camera,
     private nativeStorage: NativeStorage,
     public toast: ToastProvider) {
 
   }
 
   ionViewDidLoad(){
-    
     /*
     this.platform.ready().then(() => {
       this.nativeStorage.getItem('loggedInUser')
@@ -48,8 +46,7 @@ export class HomePage {
         }
       );
     });
-    */
-
+*/
     this.httpProvider.get('getitems.php')
     .subscribe(res => {
       this.items = res['results'];
@@ -62,6 +59,7 @@ export class HomePage {
 
   toggleFilter(){
     this.filterActive = !this.filterActive;
+    if(this.filterActive) this.content.scrollToTop();
   }
 
   selectEvent(cat){

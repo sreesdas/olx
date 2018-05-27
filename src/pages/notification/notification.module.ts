@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { ProfilePage } from './profile';
+import { NotificationPage } from './notification';
 import { IonicImageLoader } from 'ionic-image-loader';
 
 @NgModule({
   declarations: [
-    ProfilePage,
+    NotificationPage,
   ],
   imports: [
-    IonicPageModule.forChild(ProfilePage),
+    IonicPageModule.forChild(NotificationPage),
     IonicImageLoader.forRoot(),
   ],
 })
-export class ProfilePageModule {}
+export class NotificationPageModule {}
