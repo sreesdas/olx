@@ -36,8 +36,8 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
-/*
-    this.platform.ready().then(() => {
+
+    /*this.platform.ready().then(() => {
       this.nativeStorage.getItem('loggedInUser')
       .then(
         data => { this.loggedInUser = data.cpf } ,
@@ -45,17 +45,25 @@ export class HomePage {
           this.navCtrl.setRoot('LoginPage');
         }
       );
-    });
-*/
+    });*/
 
-    this.httpProvider.get('getitems.php')
+    // OLD API without a leftarray and rightarray
+    /*this.httpProvider.get('getitems.php')
     .subscribe(res => {
       this.items = res['results'];
       let size = this.items.length;
       this.itemLeft = this.items.slice(0,size/2);
       this.itemRight = this.items.slice(size/2, size);
 
+    });*/
+
+    //new API where left-right array gen is done by the server 
+    this.httpProvider.get('apis/getitems.php')
+    .subscribe(res => {
+      this.itemLeft = res['results']['left'];
+      this.itemRight = res['results']['right'];
     });
+
   }
 
   toggleFilter(){
@@ -68,7 +76,8 @@ export class HomePage {
     console.log(cat);
   }
 
-  doFilter(){
+  // OLD Filter API
+  /* doFilter(){
     let url = "filter.php?range=" + this.rangeValue + "&category=" + this.selectedCategory;
     this.httpProvider.get(url)
     .subscribe(res => {
@@ -84,6 +93,21 @@ export class HomePage {
       
       this.filterActive = !this.filterActive;
     });
+  }*/
+
+  doFilter() {
+    let url = "apis/filter.php?range=" + this.rangeValue + "&category=" + this.selectedCategory;
+    this.httpProvider.get(url)
+    .subscribe(res => {
+      this.itemLeft = res['results']['left'];
+      this.itemRight = res['results']['right'];
+
+      let size = this.itemLeft.length + this.itemRight.length;
+      if(size == 0 )
+        this.toast.presentToast("No result!")
+
+      this.filterActive = !this.filterActive;
+    });
   }
 
   sell() {
@@ -95,13 +119,11 @@ export class HomePage {
   }
 
   doRefresh(refresher:any){
-    this.httpProvider.get('getitems.php')
+    this.httpProvider.get('apis/getitems.php')
     .subscribe(res => {
-      this.items = res['results'];
-      let size = this.items.length;
-
-      this.itemLeft = this.items.slice(0,size/2);
-      this.itemRight = this.items.slice(size/2, size);
+      this.itemLeft = res['results']['left'];
+      this.itemRight = res['results']['right'];
+      
       refresher.complete();
     })
   }
