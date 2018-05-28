@@ -58,7 +58,8 @@
         <h4>{{item.item_name}}</h4>
         <p>{{item_details.description}}  <span class="timestamp">{{item_details.uploaded_on}}</span></p>
       </ion-item>
-      <ion-item>
+
+      <ion-item *ngIf="loggedInUser != item_details.uploader_cpf">
         <ion-buttons>
             <button ion-button icon-start (click)="prompt()">
               <ion-icon name="thumbs-up"></ion-icon>
@@ -70,5 +71,8 @@
             </button>
           </ion-buttons>
       </ion-item>
+
+      <button ion-button block color="danger" *ngIf="loggedInUser == item_details.uploader_cpf" (click)="presentDeleteConfirm()" >MARK AS SOLD</button>
   </ion-card>
+
 </ion-content>

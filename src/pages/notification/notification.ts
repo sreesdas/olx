@@ -37,7 +37,7 @@ export class NotificationPage {
     this.http.get('getoffers.php?cpf=' + cpf )
     .subscribe(res => {
       this.offers = res['results'];
-      this.isLoaded = true;
+      this.isLoaded = this.offers.length > 0;
     });
   }
 

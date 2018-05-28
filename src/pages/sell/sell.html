@@ -9,6 +9,7 @@
 
 
 <ion-content>
+    
     <ion-list>
         <ion-item>
           <ion-label floating>Name</ion-label>
@@ -20,15 +21,17 @@
           <ion-select [(ngModel)]="item.category">
             <ion-option value="Electronics">Electronics</ion-option>
             <ion-option value="Vehicle">Vehicle</ion-option>
+            <ion-option value="Household Goods">Household Goods</ion-option>
             <ion-option value="Furniture">Furniture</ion-option>
+            <ion-option value="House Rent/Sell">House Rent/Sell</ion-option>
             <ion-option value="Books">Books</ion-option>
-            <ion-option value="Fashion">Fashion</ion-option>
+            <ion-option value="Sports">Sports</ion-option>
             <ion-option value="Other">Other</ion-option>
           </ion-select>
         </ion-item>
 
         <ion-item>
-          <ion-label floating>Description</ion-label>
+          <ion-label floating>Description ( warranty, age, condition etc)</ion-label>
           <ion-input [(ngModel)]="item.description" type="text"></ion-input>
         </ion-item>
         
@@ -40,10 +43,10 @@
           
           <h4>Image Preview</h4>
           <div class="image-container">
-            <img [src]="base64Image" />
-            <img [src]="base64Image1" />
-            <img [src]="base64Image2" />
-            <img [src]="base64Image3" />
+            <img *ngIf="base64Image"  [src]="base64Image" />
+            <img *ngIf="base64Image1" [src]="base64Image1" />
+            <img *ngIf="base64Image2" [src]="base64Image2" />
+            <img *ngIf="base64Image3" [src]="base64Image3" />
           </div>
         </ion-item>
 

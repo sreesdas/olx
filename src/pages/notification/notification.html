@@ -13,7 +13,7 @@
     <ion-card-header>
       People interested in your offer
     </ion-card-header>
-      <h3 class="no-notification" *ngIf="isLoaded">No new notifications right now!</h3>
+      <h3 class="no-notification" *ngIf="!isLoaded">No new notifications right now!</h3>
       <ion-list *ngFor="let offer of offers">  
         <ion-item>
           <ion-avatar item-start>

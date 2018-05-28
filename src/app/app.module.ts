@@ -20,6 +20,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { CallNumber } from '@ionic-native/call-number';
 import { ToastProvider } from '../providers/toast/toast';
+import { AppMinimize } from '@ionic-native/app-minimize';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ToastProvider } from '../providers/toast/toast';
     CallNumber,
     NativeStorage,
     HttpProvider,
-    ToastProvider
+    ToastProvider,
+    AppMinimize
   ]
 })
 export class AppModule {}

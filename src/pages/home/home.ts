@@ -19,7 +19,7 @@ export class HomePage {
 
   filterActive = false;
   rangeValue:any;
-  categories = ['Electronics', 'Vehicle', 'Furniture', 'Books', 'Fashion', 'Other'];
+  categories = ['Electronics', 'Vehicle', 'Household Goods', 'Furniture',  'Books', 'House Rent/Sell', 'Other'];
   selectedCategory = '';
 
   loggedInUser: string;
@@ -36,7 +36,7 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
-    /*
+/*
     this.platform.ready().then(() => {
       this.nativeStorage.getItem('loggedInUser')
       .then(
@@ -47,6 +47,7 @@ export class HomePage {
       );
     });
 */
+
     this.httpProvider.get('getitems.php')
     .subscribe(res => {
       this.items = res['results'];

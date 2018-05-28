@@ -8,6 +8,8 @@ import { ImageLoaderConfig } from 'ionic-image-loader';
 
 import { HttpProvider } from '../providers/http/http';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { AppMinimize } from '@ionic-native/app-minimize';
+import { ToastProvider } from '../providers/toast/toast';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,6 +26,8 @@ export class MyApp {
     private storage: NativeStorage,
     private http: HttpProvider,
     splashScreen: SplashScreen, 
+    private toast: ToastProvider,
+    private appMinimize: AppMinimize,
     private imageLoaderConfig: ImageLoaderConfig) {
 
     this.pages = [
@@ -31,6 +35,10 @@ export class MyApp {
         { title: 'Notifications', component: 'NotificationPage', icon: 'notifications' },
         { title: 'Logout', component: '', icon: 'power' },
     ];
+
+    platform.registerBackButtonAction(() => {
+      this.nav.canGoBack() ?  this.nav.pop() : this.appMinimize.minimize();
+    });
 
     platform.ready().then(() => {
       
@@ -62,7 +70,15 @@ export class MyApp {
   }
 
   openPage(page:any) {
-    this.nav.push(page.component, {user: this.user.cpf, isAdmin: true} )
+    page.title == 'Logout' ? this.logout() : this.nav.push(page.component, { user: this.user.cpf, isAdmin: true } )
+  }
+
+  logout() {
+    this.storage.remove('loggedInUser')
+    .then(data => {
+      this.toast.presentToast("Succesfully logged out"); 
+      this.nav.setRoot('LoginPage');
+    });
   }
 }
 

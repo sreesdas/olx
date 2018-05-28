@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
+import { LoadingController } from 'ionic-angular';
 import { ToastProvider } from '../../providers/toast/toast';
 
 @IonicPage()
@@ -24,6 +25,7 @@ export class SellPage {
     public navParams: NavParams,
     private camera: Camera,
     private http: HttpClient,
+    private loadingCtrl: LoadingController,
     private toast: ToastProvider ) {
   }
 
@@ -76,6 +78,12 @@ export class SellPage {
 
   upload() {
 
+    let loading = this.loadingCtrl.create({
+      spinner: 'dots',
+      content: 'Uploading Images..'
+    });
+    loading.present();
+
     if(this.base64Image){
       let url = "http://ec2-13-127-19-135.ap-south-1.compute.amazonaws.com/olx/form.php";
       let postData = new FormData();
@@ -94,6 +102,7 @@ export class SellPage {
       this.http.post(url, postData)
       .subscribe(res => {
         this.toast.presentToast("Image Uploaded succesfully");
+        loading.dismiss();
         this.navCtrl.pop();
       }, err => {
         this.toast.presentToast("Error wrong while uploading!");
@@ -101,4 +110,5 @@ export class SellPage {
     }
     
   }
+
 }

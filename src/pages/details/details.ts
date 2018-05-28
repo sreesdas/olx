@@ -33,7 +33,6 @@ export class DetailsPage {
   item_details: any = {};
   photoes = {urls: [], size: 0};
 
-  expand = false;
   state:string = 'small';
   offer = 0;
   offerActive = false;
@@ -86,8 +85,35 @@ export class DetailsPage {
     this.state = this.state == 'small' ? 'large' : 'small';
   }
 
-  toggleExpand(){
-    this.expand = !this.expand;
+  presentDeleteConfirm(offer) {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm Delete',
+      message: 'Do you really want to delete the item?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.deleteItem();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  deleteItem() {
+    this.http.get('delete.php?uid=' + this.item.uid)
+    .subscribe( res => {
+      this.toast.presentToast("Item delete " + res['result'] + ".Please refresh the list");
+      this.navCtrl.pop();
+    });
   }
 
   prompt() {

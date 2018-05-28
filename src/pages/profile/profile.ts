@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Alert } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { HttpProvider } from '../../providers/http/http';
 import { CallNumber } from '@ionic-native/call-number';
@@ -45,8 +45,6 @@ export class ProfilePage {
     let cpf = this.navParams.get('user');
     this.isAdmin = this.navParams.get('isAdmin');
 
-    console.log(">>" + cpf);
-
     this.http.get('profile.php?cpf=' + cpf)
     .subscribe( res => { 
       this.user = res['results'];
@@ -73,7 +71,7 @@ export class ProfilePage {
   deleteOffer(offer){
     this.http.get('delete.php?uid=' + offer.uid)
     .subscribe( res => {
-      this.toast.presentToast("Item delete " + res['status']);
+      this.toast.presentToast("Item delete " + res['result']);
       this.offers.splice(
         this.offers.findIndex(function(item,i){ return item['uid'] == offer.uid }), 1
       );
