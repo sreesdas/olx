@@ -56,7 +56,7 @@
       <ion-item>
         <h1>₹ {{item.item_price}}</h1>
         <h4>{{item.item_name}}</h4>
-        <p>{{item_details.description}}  <span class="timestamp">{{item_details.uploaded_on}}</span></p>
+        <p>{{item_details.description}}  <span class="timestamp">{{item_details.uploaded_on | date}}</span></p>
       </ion-item>
 
       <ion-item *ngIf="loggedInUser != item_details.uploader_cpf">

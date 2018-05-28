@@ -6,6 +6,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+//Pipes
+import { PipesModule } from '../pipes/pipes.module';
+
 // Pages
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -30,6 +33,7 @@ import { AppMinimize } from '@ionic-native/app-minimize';
   ],
   imports: [
     BrowserModule,
+    PipesModule,
     BrowserAnimationsModule,
     HttpClientModule,
     IonicImageLoader.forRoot(),

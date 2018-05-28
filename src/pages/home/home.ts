@@ -37,7 +37,7 @@ export class HomePage {
 
   ionViewDidLoad(){
 
-    /*this.platform.ready().then(() => {
+    this.platform.ready().then(() => {
       this.nativeStorage.getItem('loggedInUser')
       .then(
         data => { this.loggedInUser = data.cpf } ,
@@ -45,7 +45,7 @@ export class HomePage {
           this.navCtrl.setRoot('LoginPage');
         }
       );
-    });*/
+    });
 
     // OLD API without a leftarray and rightarray
     /*this.httpProvider.get('getitems.php')
@@ -123,7 +123,7 @@ export class HomePage {
     .subscribe(res => {
       this.itemLeft = res['results']['left'];
       this.itemRight = res['results']['right'];
-      
+
       refresher.complete();
     })
   }
